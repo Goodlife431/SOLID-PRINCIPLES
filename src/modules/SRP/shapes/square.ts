@@ -1,6 +1,3 @@
-export class Square{
-    
-    constructor(private length: number){
-    }
-    
+export class Square {
+  constructor(private length: number) {}
 }

@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppService } from './app.service';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -11,8 +12,9 @@ async function bootstrap() {
     .addBearerAuth() // optional: if you're using JWT
     .build();
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document); 
+ 
   await app.listen(3000);
+  const appService = app.get(AppService);
+  appService.hamdleQueries();
 }
 bootstrap();

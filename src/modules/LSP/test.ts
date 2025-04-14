@@ -1,49 +1,48 @@
 export class AreaCalculator {
-    protected shapes:  any[];
-    constructor(shapes: any[] = []){
-        this.shapes = shapes;
-    }
-    public sum(): number[] {
-        const data = this.shapes.map(shape => shape.area);
-        return data;
-    }
+  protected shapes: any[];
+  constructor(shapes: any[] = []) {
+    this.shapes = shapes;
+  }
+  public sum(): number[] {
+    const data = this.shapes.map((shape) => shape.area);
+    return data;
+  }
 }
 
 export class VolumeCalaculator extends AreaCalculator {
-    constructor (shapes: any[] = []){
-        super(shapes);
-    }
+  constructor(shapes: any[] = []) {
+    super(shapes);
+  }
 
-    public sum(): number[] {
-        const data = this.shapes.map(shape => shape.volume);
-        return data
-    }
+  public sum(): number[] {
+    const data = this.shapes.map((shape) => shape.volume);
+    return data;
+  }
 }
 
 export class SumCalculatorOutputter {
-    protected calculator: AreaCalculator;
+  protected calculator: AreaCalculator;
 
-    constructor(calculator: AreaCalculator) {
-        this.calculator = calculator;
-    }
+  constructor(calculator: AreaCalculator) {
+    this.calculator = calculator;
+  }
 
-    public JSON(): string {
-        const data = {
-            sum: this.calculator.sum(),
-        };
+  public JSON(): string {
+    const data = {
+      sum: this.calculator.sum(),
+    };
 
-        return JSON.stringify(data);
-    }
+    return JSON.stringify(data);
+  }
 
-    public HTML(): string {
-        return `
+  public HTML(): string {
+    return `
             <div>
                 Sum of the areas of provided shapes: ${this.calculator.sum().join(', ')}
             </div>
         `;
-    }
+  }
 }
-
 
 const areas = new AreaCalculator([{ area: 10 }, { area: 20 }]);
 const volumes = new VolumeCalaculator([{ volume: 30 }, { volume: 40 }]);

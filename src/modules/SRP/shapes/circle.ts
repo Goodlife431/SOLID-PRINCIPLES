@@ -1,3 +1,3 @@
-export class Circle{
-    constructor(private radius: number){}
+export class Circle {
+  constructor(private radius: number) {}
 }
